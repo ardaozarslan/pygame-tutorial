@@ -1,5 +1,6 @@
 import pygame
 import pygame.locals as pyg_locals
+import random
 
 pygame.init()
 width = 1600
@@ -8,6 +9,7 @@ screen = pygame.display.set_mode((width, height))
 playerPos = [500, 400]
 movement = 100
 badGuysTimer = 20
+badGuys = []
 
 player = pygame.image.load("player.png")
 tiles = pygame.image.load("tiles.png")
@@ -36,9 +38,13 @@ while True:
     for x in range(int(width / tiles.get_width())):
         for y in range(int(height / tiles.get_height())):
             screen.blit(tiles, (100 * x, 100 * y))
+
     if badGuysTimer == 0:
-        screen.blit(badGuyImg, [300, 300])
+        badGuys.append([300, 300])
         badGuysTimer = 20
+
+    for kotuAdam in badGuys:
+        screen.blit(badGuyImg, kotuAdam)
 
     screen.blit(player, playerPos)
     pygame.display.flip()
