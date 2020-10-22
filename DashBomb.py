@@ -17,6 +17,7 @@ bullets = []
 isBadGuyDead = 0
 healthValue = 5
 gameOver = 1
+score = 0
 
 player = pygame.image.load("player.png")
 tiles = pygame.image.load("tiles.png")
@@ -64,6 +65,9 @@ while gameOver:
     draw_text(screen, "Health= " + str(healthValue), 30, 19, 14, (255, 0, 0))
     draw_text(screen, "Health= " + str(healthValue), 30, 20, 15, (0, 0, 0))
 
+    draw_text(screen, "Score= " + str(score), 30, 19, 39, (255, 0, 0))
+    draw_text(screen, "Score= " + str(score), 30, 20, 40, (0, 0, 0))
+
     bulletIndex = 0
     for bullet in bullets:
         pygame.draw.circle(screen, (30, 30, 122), bullet[0], bullet[1], 10)
@@ -91,11 +95,13 @@ while gameOver:
 
         if kotuAdam[0] < -40 or kotuAdam[0] > 1600 or kotuAdam[1] < -40 or kotuAdam[1] > 900:
             badGuys.pop(index)
+            score += 50
             continue
 
         for bullet in bullets:
             if ((bullet[0][0] - 20 - kotuAdam[0])**2 + (bullet[0][1] - 10 - kotuAdam[1])**2)**0.5 <= (bullet[1] + 20):
                 badGuys.pop(index)
+                score += 150
                 isBadGuyDead = 1
                 break
 
