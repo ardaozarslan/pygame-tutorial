@@ -52,9 +52,9 @@ while True:
     index = 0
     for kotuAdam in badGuys:
         if kotuAdam[2] == 0:
-            kotuAdam[2] = math.atan2(playerPosReal[1] - kotuAdam[1], playerPosReal[0] - kotuAdam[0])
+            kotuAdam[2] = math.atan2(playerPosReal[1] - 20 - kotuAdam[1], playerPosReal[0] - 20 - kotuAdam[0])
 
-        if ((playerPosReal[0] - kotuAdam[0])**2 + (playerPosReal[1] - kotuAdam[1])**2)**0.5 <= 70:
+        if ((playerPosReal[0] - 20 - kotuAdam[0])**2 + (playerPosReal[1] - 20 - kotuAdam[1])**2)**0.5 <= 70:
             badGuys.pop(index)
 
         kotuAdam[0] += math.cos(kotuAdam[2]) * speed
