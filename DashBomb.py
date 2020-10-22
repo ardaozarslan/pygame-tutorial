@@ -16,7 +16,8 @@ while True:
             exit()
 
     for x in range(int(width / tiles.get_width())):
-        screen.blit(tiles, (100 * x, 300))
+        for y in range(int(height / tiles.get_height())):
+            screen.blit(tiles, (100 * x, 100 * y))
 
     screen.blit(player, [500, 400])
 
