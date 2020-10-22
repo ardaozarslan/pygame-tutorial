@@ -22,6 +22,15 @@ while True:
             if event.key == pyg_locals.K_w:
                 playerPos[1] -= movement
 
+            if event.key == pyg_locals.K_a:
+                playerPos[0] -= movement
+
+            if event.key == pyg_locals.K_s:
+                playerPos[1] += movement
+
+            if event.key == pyg_locals.K_d:
+                playerPos[0] += movement
+
     for x in range(int(width / tiles.get_width())):
         for y in range(int(height / tiles.get_height())):
             screen.blit(tiles, (100 * x, 100 * y))
