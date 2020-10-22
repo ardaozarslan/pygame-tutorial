@@ -11,6 +11,7 @@ playerPos = [500, 400]
 movement = 100
 badGuysTimer = 20
 badGuys = []
+speed = 4
 
 player = pygame.image.load("player.png")
 tiles = pygame.image.load("tiles.png")
@@ -45,8 +46,11 @@ while True:
         badGuysTimer = 20
 
     for kotuAdam in badGuys:
-        kotuAdam[2] = math.atan2(playerPos[1] - kotuAdam[1], playerPos[0] - kotuAdam[0])
-        print(kotuAdam[2])
+        if kotuAdam[2] == 0:
+            kotuAdam[2] = math.atan2(playerPos[1] - kotuAdam[1], playerPos[0] - kotuAdam[0])
+
+        kotuAdam[0] += math.cos(kotuAdam[2]) * speed
+        kotuAdam[1] += math.sin(kotuAdam[2]) * speed
 
     for kotuAdam in badGuys:
         screen.blit(badGuyImg, [kotuAdam[0], kotuAdam[1]])
