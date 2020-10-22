@@ -45,12 +45,18 @@ while True:
         badGuys.append([random.randint(30, 1570), random.randint(30, 870), 0])
         badGuysTimer = 20
 
+    index = 0
     for kotuAdam in badGuys:
         if kotuAdam[2] == 0:
             kotuAdam[2] = math.atan2(playerPos[1] - kotuAdam[1], playerPos[0] - kotuAdam[0])
 
+        if ((playerPos[0] - kotuAdam[0])**2 + (playerPos[1] - kotuAdam[1])**2)**0.5 <= 70:
+            badGuys.pop(index)
+
         kotuAdam[0] += math.cos(kotuAdam[2]) * speed
         kotuAdam[1] += math.sin(kotuAdam[2]) * speed
+
+        index += 1
 
     for kotuAdam in badGuys:
         screen.blit(badGuyImg, [kotuAdam[0], kotuAdam[1]])
