@@ -40,8 +40,12 @@ while True:
             screen.blit(tiles, (100 * x, 100 * y))
 
     if badGuysTimer == 0:
-        badGuys.append([300, 300])
+        badGuys.append([random.randint(30, 1570), random.randint(30, 870)])
         badGuysTimer = 20
+
+    for kotuAdam in badGuys:
+        kotuAdam[0] += 5
+        kotuAdam[1] += 5
 
     for kotuAdam in badGuys:
         screen.blit(badGuyImg, kotuAdam)
