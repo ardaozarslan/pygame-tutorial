@@ -10,6 +10,7 @@ movement = 100
 
 player = pygame.image.load("player.png")
 tiles = pygame.image.load("tiles.png")
+badGuyImg = pygame.image.load("badguy.png")
 
 while True:
     screen.fill(0)
@@ -35,6 +36,6 @@ while True:
         for y in range(int(height / tiles.get_height())):
             screen.blit(tiles, (100 * x, 100 * y))
 
-    screen.blit(player, [500, 400])
+    screen.blit(player, playerPos)
 
     pygame.display.flip()
