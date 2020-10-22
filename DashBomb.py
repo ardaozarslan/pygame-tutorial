@@ -22,6 +22,15 @@ player = pygame.image.load("player.png")
 tiles = pygame.image.load("tiles.png")
 badGuyImg = pygame.image.load("badguy.png")
 
+
+def draw_text(surface, text, size, x, y, color):
+    font = pygame.font.Font(pygame.font.match_font("arial"), size)
+    text_surface = font.render(text, True, color)
+    text_rect = text_surface.get_rect()
+    text_rect.topleft = (x, y)
+    surface.blit(text_surface, text_rect)
+
+
 while gameOver:
     screen.fill(0)
     playerPosReal = [playerPos[0] + 50, playerPos[1] + 50]
@@ -51,6 +60,8 @@ while gameOver:
     for x in range(int(width / tiles.get_width())):
         for y in range(int(height / tiles.get_height())):
             screen.blit(tiles, (100 * x, 100 * y))
+
+    draw_text(screen, "Health= " + str(healthValue), 30, 19, 14, (255, 0, 0))
 
     bulletIndex = 0
     for bullet in bullets:
