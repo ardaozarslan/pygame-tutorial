@@ -14,6 +14,7 @@ badGuysTimer = 20
 badGuys = []
 speed = 4
 bullets = []
+isBadGuyDead = 0
 
 player = pygame.image.load("player.png")
 tiles = pygame.image.load("tiles.png")
@@ -70,10 +71,18 @@ while True:
         if ((playerPosReal[0] - 20 - kotuAdam[0])**2 + (playerPosReal[1] - 20 - kotuAdam[1])**2)**0.5 <= 70:
             badGuys.pop(index)
 
-        kotuAdam[0] += math.cos(kotuAdam[2]) * speed
-        kotuAdam[1] += math.sin(kotuAdam[2]) * speed
+        for bullet in bullets:
+            if ((bullet[0][0] - 20 - kotuAdam[0])**2 + (bullet[0][1] - 10 - kotuAdam[1])**2)**0.5 <= (bullet[1] + 20):
+                badGuys.pop(index)
+                isBadGuyDead = 1
+                break
 
-        index += 1
+        if not isBadGuyDead:
+            kotuAdam[0] += math.cos(kotuAdam[2]) * speed
+            kotuAdam[1] += math.sin(kotuAdam[2]) * speed
+            index += 1
+
+        isBadGuyDead = 0
 
     for kotuAdam in badGuys:
         screen.blit(badGuyImg, [kotuAdam[0], kotuAdam[1]])
