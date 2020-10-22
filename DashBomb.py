@@ -16,12 +16,13 @@ speed = 4
 bullets = []
 isBadGuyDead = 0
 healthValue = 5
+gameOver = 1
 
 player = pygame.image.load("player.png")
 tiles = pygame.image.load("tiles.png")
 badGuyImg = pygame.image.load("badguy.png")
 
-while True:
+while gameOver:
     screen.fill(0)
     playerPosReal = [playerPos[0] + 50, playerPos[1] + 50]
     for event in pygame.event.get():
@@ -72,7 +73,8 @@ while True:
         if ((playerPosReal[0] - 20 - kotuAdam[0])**2 + (playerPosReal[1] - 20 - kotuAdam[1])**2)**0.5 <= 70:
             badGuys.pop(index)
             healthValue -= 1
-            print(healthValue)
+            if healthValue <= 0:
+                gameOver = 0
             continue
 
         for bullet in bullets:
