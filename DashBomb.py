@@ -1,6 +1,7 @@
 import pygame
 import pygame.locals as pyg_locals
 import random
+import math
 
 pygame.init()
 width = 1600
@@ -40,15 +41,15 @@ while True:
             screen.blit(tiles, (100 * x, 100 * y))
 
     if badGuysTimer == 0:
-        badGuys.append([random.randint(30, 1570), random.randint(30, 870)])
+        badGuys.append([random.randint(30, 1570), random.randint(30, 870), 0])
         badGuysTimer = 20
 
     for kotuAdam in badGuys:
-        kotuAdam[0] += 5
-        kotuAdam[1] += 5
+        kotuAdam[2] = math.atan2(playerPos[1] - kotuAdam[1], playerPos[0] - kotuAdam[0])
+        print(kotuAdam[2])
 
     for kotuAdam in badGuys:
-        screen.blit(badGuyImg, kotuAdam)
+        screen.blit(badGuyImg, [kotuAdam[0], kotuAdam[1]])
 
     screen.blit(player, playerPos)
     pygame.display.flip()
