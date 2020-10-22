@@ -77,6 +77,10 @@ while gameOver:
                 gameOver = 0
             continue
 
+        if kotuAdam[0] < -40 or kotuAdam[0] > 1600 or kotuAdam[1] < -40 or kotuAdam[1] > 900:
+            badGuys.pop(index)
+            continue
+
         for bullet in bullets:
             if ((bullet[0][0] - 20 - kotuAdam[0])**2 + (bullet[0][1] - 10 - kotuAdam[1])**2)**0.5 <= (bullet[1] + 20):
                 badGuys.pop(index)
