@@ -13,6 +13,7 @@ movement = 100
 badGuysTimer = 20
 badGuys = []
 speed = 4
+bullets = []
 
 player = pygame.image.load("player.png")
 tiles = pygame.image.load("tiles.png")
@@ -41,9 +42,16 @@ while True:
 
         playerPosReal = [playerPos[0] + 50, playerPos[1] + 50]
 
+        if event.type == pyg_locals.MOUSEBUTTONDOWN:
+            bullets.append([playerPosReal, 50])
+
     for x in range(int(width / tiles.get_width())):
         for y in range(int(height / tiles.get_height())):
             screen.blit(tiles, (100 * x, 100 * y))
+
+    for bullet in bullets:
+        pygame.draw.circle(screen, (30, 30, 122), bullet[0], bullet[1], 10)
+        bullet[1] += 8
 
     if badGuysTimer == 0:
         badGuys.append([random.randint(30, 1570), random.randint(30, 870), 0])
