@@ -49,9 +49,14 @@ while True:
         for y in range(int(height / tiles.get_height())):
             screen.blit(tiles, (100 * x, 100 * y))
 
+    bulletIndex = 0
     for bullet in bullets:
         pygame.draw.circle(screen, (30, 30, 122), bullet[0], bullet[1], 10)
         bullet[1] += 8
+        if bullet[1] >= 150:
+            del bullets[bulletIndex]
+        else:
+            bulletIndex += 1
 
     if badGuysTimer == 0:
         badGuys.append([random.randint(30, 1570), random.randint(30, 870), 0])
